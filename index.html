@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wintrust | Due Diligence &amp; Financial Reporting</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ─── BASE ─────────────────────────────────────────────────────────── */
+.gp *, .gp *::before, .gp *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.gp {
+  --blue:      #0070b9;
+  --blue-dark: #004e82;
+  --blue-deep: #0b2a44;
+  --ink:       #333e4e;
+  --ink-light: #5f6b7a;
+  --rule:      #e5e8ec;
+  --panel:     #f5f8fb;
+  --white:     #ffffff;
+  --ease:      cubic-bezier(.16,1,.3,1);
+
+  font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 28px 64px;
+}
+.gp a { color: inherit; }
+.gp :focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 20px; }
+
+/* ─── HEADER ───────────────────────────────────────────────────────── */
+.gp-header {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: clamp(40px, 6vw, 64px) 24px clamp(44px, 6vw, 68px);
+  margin-bottom: 52px;
+  border-radius: 24px;
+  background-color: var(--panel);
+  background-image:
+    radial-gradient(60% 120% at 50% 0%, rgba(0,112,185,0.10) 0%, rgba(0,112,185,0) 70%),
+    radial-gradient(rgba(11,42,68,0.07) 1px, transparent 1px);
+  background-size: auto, 16px 16px;
+  animation: gpFade 0.9s var(--ease) both;
+}
+
+.gp-logo { width: 210px; height: auto; margin: 0 auto 28px; display: block; }
+
+.gp-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+.gp-eyebrow::before, .gp-eyebrow::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: 0.5; }
+
+.gp-title {
+  font-size: clamp(32px, 4.4vw, 50px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.gp-partners {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--ink-light);
+}
+.gp-partners span + span { padding-left: 16px; border-left: 1px solid #c3cbd4; }
+.gp-partners strong { font-weight: 600; color: var(--ink); }
+
+/* ─── SECTION LABEL ────────────────────────────────────────────────── */
+.gp-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.gp-label::before, .gp-label::after { content: ""; flex: 1; max-width: 420px; height: 1px; background: var(--rule); }
+.gp-label span { margin-left: -8px; font-weight: 600; color: var(--blue); }
+
+/* ─── CARDS ────────────────────────────────────────────────────────── */
+.gp-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+}
+
+.gp-card {
+  position: relative;
+  width: 356px;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(11,42,68,0.04), 0 14px 30px -18px rgba(11,42,68,0.22);
+  transition: transform 0.6s var(--ease), box-shadow 0.6s var(--ease), border-color 0.6s var(--ease);
+  animation: gpIn 0.9s var(--ease) both;
+  animation-delay: 0.15s;
+}
+.gp-card:nth-child(2)  { animation-delay: 0.21s; }
+.gp-card:nth-child(3)  { animation-delay: 0.27s; }
+.gp-card:nth-child(4)  { animation-delay: 0.33s; }
+.gp-card:nth-child(5)  { animation-delay: 0.39s; }
+.gp-card:nth-child(6)  { animation-delay: 0.45s; }
+.gp-card:nth-child(7)  { animation-delay: 0.51s; }
+.gp-card:nth-child(8)  { animation-delay: 0.57s; }
+.gp-card:nth-child(n+9){ animation-delay: 0.63s; }
+
+@keyframes gpIn   { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes gpFade { from { opacity: 0; } to { opacity: 1; } }
+
+.gp-card:hover, .gp-card:focus-visible {
+  transform: translateY(-8px);
+  border-color: rgba(0,112,185,0.3);
+  box-shadow: 0 1px 2px rgba(11,42,68,0.04), 0 34px 60px -26px rgba(11,42,68,0.45);
+}
+
+/* Image — shows a monogram tile when there's no rendering yet */
+.gp-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: var(--blue-deep);
+  background-image:
+    radial-gradient(90% 90% at 90% 0%, rgba(0,112,185,0.65) 0%, rgba(0,112,185,0) 70%),
+    radial-gradient(rgba(255,255,255,0.09) 1px, transparent 1px);
+  background-size: auto, 14px 14px;
+}
+.gp-media::before {
+  content: attr(data-mono);
+  position: absolute;
+  left: 22px;
+  bottom: 14px;
+  font-size: 76px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgba(255,255,255,0.88);
+  transition: transform 0.9s var(--ease);
+}
+.gp-media img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.1s var(--ease);
+}
+/* soft shade so the photo settles into the card */
+.gp-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(11,42,68,0) 55%, rgba(11,42,68,0.28) 100%);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+.gp-card:hover .gp-media img     { transform: scale(1.07); }
+.gp-card:hover .gp-media::before { transform: translateY(-4px); }
+.gp-card:hover .gp-media::after  { opacity: 1; }
+
+.gp-body {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 22px;
+}
+/* blue line that draws across the top of the text on hover */
+.gp-body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s var(--ease);
+}
+.gp-card:hover .gp-body::before { transform: scaleX(1); }
+
+.gp-name {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gp-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: var(--ink-light);
+}
+.gp-meta span { display: inline-flex; align-items: center; gap: 8px; }
+.gp-meta svg { width: 14px; height: 14px; flex-shrink: 0; stroke: var(--blue); }
+
+.gp-open {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  padding: 0 20px;
+  border-radius: 12px;
+  background: rgba(0,112,185,0.07);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--blue-dark);
+  transition: background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* A long, thin arrow: on hover the shaft stretches and the arrow eases forward */
+.gp-arrow {
+  position: relative;
+  display: block;
+  width: 30px;
+  height: 12px;
+  transition: transform 0.5s var(--ease);
+}
+.gp-arrow::before {
+  content: "";
+  position: absolute;
+  right: 1px;
+  top: 50%;
+  width: 14px;
+  height: 1.6px;
+  margin-top: -0.8px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: width 0.5s var(--ease);
+}
+.gp-arrow svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+}
+
+.gp-card:hover .gp-open, .gp-card:focus-visible .gp-open {
+  background: var(--blue);
+  color: var(--white);
+  box-shadow: 0 12px 24px -12px rgba(0,112,185,0.65);
+}
+.gp-card:hover .gp-arrow, .gp-card:focus-visible .gp-arrow { transform: translateX(4px); }
+.gp-card:hover .gp-arrow::before, .gp-card:focus-visible .gp-arrow::before { width: 26px; }
+
+/* ─── FOOTER ───────────────────────────────────────────────────────── */
+.gp-foot {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 20px 32px;
+  padding: 26px 30px;
+  border-radius: 20px;
+  background: var(--panel);
+}
+.gp-foot-title { font-size: 15px; font-weight: 600; color: var(--ink); }
+.gp-foot-text  { font-size: 13.5px; color: var(--ink-light); }
+
+.gp-contact {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px 12px 12px;
+  border-radius: 14px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  text-decoration: none;
+  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.gp-contact:hover { border-color: rgba(0,112,185,0.4); box-shadow: 0 12px 26px -16px rgba(11,42,68,0.35); }
+.gp-avatar {
+  display: grid;
+  place-items: center;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+}
+.gp-contact-name { display: block; font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+.gp-contact-sub  { display: block; font-size: 12.5px; color: var(--blue); }
+
+.gp-fine { margin-top: 22px; text-align: center; font-size: 12px; color: var(--ink-light); }
+
+/* ─── RESPONSIVE ───────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .gp { padding: 18px 14px 48px; }
+  .gp-header { margin-bottom: 36px; border-radius: 18px; }
+  .gp-logo { width: 170px; }
+  .gp-partners { flex-direction: column; gap: 2px; }
+  .gp-partners span + span { padding-left: 0; border-left: 0; }
+  .gp-card { width: 100%; max-width: 400px; }
+  .gp-foot { grid-template-columns: 1fr; text-align: center; }
+  .gp-contact { justify-self: center; text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gp-header, .gp-card { animation: none; }
+  .gp *, .gp *::before, .gp *::after { transition: none !important; }
+}
+</style>
+</head>
+<body style="margin:0;">
+
+<div class="gp">
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header class="gp-header">
+    <img class="gp-logo"
+         src="https://static.wixstatic.com/media/4f7dd4_06e448c745c3483c94001700bd9ddc8f~mv2.png"
+         alt="The Garrett Companies"
+         onerror="this.style.display='none';">
+    <!-- ▼ "Lender" or "Partner" ▼ -->
+    <p class="gp-eyebrow">Lender Document Portal</p>
+    <h1 class="gp-title">Due Diligence &amp; Financial Reporting</h1>
+    <p class="gp-partners">
+      <span>The Garrett Companies</span>
+      <!-- ▼ LENDER / PARTNER NAME ▼ -->
+      <span><strong>Wintrust</strong></span>
+    </p>
+  </header>
+
+  <!-- ▼ Update the count if you add or remove a card ▼ -->
+  <p class="gp-label">Properties<span>1</span></p>
+
+  <!-- ═══════════ PROPERTY CARDS ═══════════
+       TO ADD A PROPERTY: copy one <a class="gp-card"> block and paste it below.
+       ▼ href      = the property's SharePoint folder link
+       ▼ data-mono = 1–2 letters shown on the blue tile when there's no rendering
+       ▼ img src   = the rendering URL (leave src="" to show the monogram tile)
+       ▼ gp-meta   = location and units (delete a line if you don't have it yet)
+       A single card on its own (lender pages) centers automatically. -->
+  <section class="gp-grid">
+
+    <!-- ▼ Replace each href="#" with that property's SharePoint folder link ▼ -->
+    <a class="gp-card" href="https://thegarrettco2.sharepoint.com/:f:/s/Wintrust/IgA4KJ3HLVxUQLG1F2hc56TfAWWY1HYA8480LLnVamSaR5k?e=t9ka9p" target="_blank" rel="noopener">
+      <div class="gp-media" data-mono="HJ"><img src="https://static.wixstatic.com/media/4f7dd4_26e4e60ac36e4dc7bb598c73c131180a~mv2.png" alt="" onerror="this.remove()"></div>
+      <div class="gp-body">
+        <h3 class="gp-name">Garrett Harvest Junction West</h3>
+        <p class="gp-meta">
+          <span><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14.5s4.5-4.2 4.5-8a4.5 4.5 0 10-9 0c0 3.8 4.5 8 4.5 8z"/><circle cx="8" cy="6.5" r="1.6"/></svg>Longmont, CO</span>
+          <span><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14.2V3.6L8 2l5 1.6v10.6M1.6 14.2h12.8M6 6h.8M9.2 6h.8M6 9h.8M9.2 9h.8M7 14.2v-2.4h2v2.4"/></svg>224 Units</span>
+        </p>
+        <span class="gp-open">Review Documents<span class="gp-arrow" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1.5L10.5 6 6 10.5"/></svg></span></span>
+      </div>
+    </a>
+
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <div class="gp-foot">
+      <div>
+        <p class="gp-foot-title">Opening the Folders</p>
+        <p class="gp-foot-text">Each folder opens in SharePoint in a new tab. Sign in with the email that received your invitation. Seeing “Access Denied”? Use the request access button on that screen.</p>
+      </div>
+      <!-- ▼ CONTACT ▼ -->
+      <a class="gp-contact" href="mailto:JBauer@TheGarrettCo.com">
+        <span class="gp-avatar">JB</span>
+        <span>
+          <span class="gp-contact-name">Jacey Bauer</span>
+          <span class="gp-contact-sub">jbauer@thegarrettco.com</span>
+        </span>
+      </a>
+    </div>
+    <p class="gp-fine">These materials are confidential and shared for the use of Wintrust only. Please don’t forward links or files outside your organization.</p>
+  </footer>
+
+</div>
+
+<script>
+/* Keeps every property name on one line: if any name is too long for its
+   card, all names step down together so the sizes stay consistent. */
+(function () {
+  function fit() {
+    var names = Array.prototype.slice.call(document.querySelectorAll(".gp-name"));
+    if (!names.length) return;
+    names.forEach(function (n) { n.style.fontSize = ""; });
+    var size = parseFloat(getComputedStyle(names[0]).fontSize);
+    function tooWide() { return names.some(function (n) { return n.scrollWidth > n.clientWidth + 0.5; }); }
+    while (tooWide() && size > 13) {
+      size -= 0.5;
+      names.forEach(function (n) { n.style.fontSize = size + "px"; });
+    }
+  }
+  fit();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  window.addEventListener("resize", fit);
+})();
+</script>
+
+</body>
+</html>
